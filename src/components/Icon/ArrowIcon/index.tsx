@@ -1,4 +1,4 @@
-import ArrowPng from "../../../assets/Arrow.png";
+import ArrowPng from "../../../assets/icons/arrowIcon.png";
 
 
 const ArrowIcon = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {

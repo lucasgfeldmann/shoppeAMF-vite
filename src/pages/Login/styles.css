@@ -13,9 +13,9 @@
     gap: 5px;
 }
 
-@media screen and (max-width: 768px) and (min-height: 768px) {
+@media screen and (max-width: 768px) and (min-height: 650px) {
     .login-main-content {
-        background-image: url("../../assets/background2.svg");
+        background-image: url("../../assets/background/loginBackground.svg");
         background-size: cover;
     }
 }

@@ -13,9 +13,9 @@
     text-align: justify;
 }
 
-@media screen and (max-width: 768px) and (min-height: 768px) {
+@media screen and (max-width: 768px) and (min-height: 650px) {
     .register-main-content {
-        background-image: url("../../assets/teste2.svg");
+        background-image: url("../../assets/background/registerBackground.svg");
         background-size: cover;
     }
 }

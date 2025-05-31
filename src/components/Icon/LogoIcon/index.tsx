@@ -1,4 +1,4 @@
-import LogoPng from "../../../assets/Icon.png";
+import LogoPng from "../../../assets/icons/logo.png";
 
 
 const LogoIcon = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {

@@ -6,21 +6,15 @@ import Icon from "../../components/Icon";
 import "./styles.css";
 import { useNavigate } from "react-router";
 
-
-
 const GetStart: FC = () => {
-    const navigate = useNavigate()
-
-    function teste(message: string): void {
-        console.log(message)
-    }
+    const navigate = useNavigate();
 
     function goToRegister(): void {
-        navigate("/register")
+        navigate("/register");
     }
 
     function goToLogin(): void {
-        navigate("/login")
+        navigate("/login");
     }
 
     return (
