@@ -1,0 +1,12 @@
+.get-started-main-content {
+    justify-content: space-between;
+    padding-top: 35vh;
+    padding-bottom: 10%;
+}
+
+@media screen and (max-width: 768px) and (min-height: 768px) {
+    .get-started-main-content {
+        background-image: url("../../assets/teste2.svg");
+        background-size: cover;
+    }
+}

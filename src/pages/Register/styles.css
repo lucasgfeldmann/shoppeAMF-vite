@@ -1,0 +1,21 @@
+.register-main-content {
+    justify-content: space-between;
+    padding-inline: 5vw;
+    padding-bottom: 5vh;
+    padding-top: 20vh;
+}
+
+.register-vertical-content {
+    gap: 5px;
+}
+
+.title-register {
+    text-align: justify;
+}
+
+@media screen and (max-width: 768px) and (min-height: 768px) {
+    .register-main-content {
+        background-image: url("../../assets/teste2.svg");
+        background-size: cover;
+    }
+}

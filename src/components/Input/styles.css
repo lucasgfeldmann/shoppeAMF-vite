@@ -1,0 +1,23 @@
+.input-standart {
+    background-color: #F8F8F8;
+    border-radius: 60px;
+    padding: 10px;
+    border-width: 0;
+    box-sizing: border-box;
+    border: 4px solid #F8F8F8 ;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-standart:focus-visible {
+    border: 4px solid #cacaca ;
+    outline: none;
+}
+
+.input-standart::placeholder {
+    color: #D2D2D2;
+    font-size: 14px;
+    font-weight: bold;
+}

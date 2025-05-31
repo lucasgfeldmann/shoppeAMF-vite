@@ -1,0 +1,21 @@
+
+.login-texts {
+    text-align: justify;
+    width: 100%;
+}
+
+.login-main-content {
+    justify-content: end;
+    gap: 40px;
+}
+
+.login-vertical-content {
+    gap: 5px;
+}
+
+@media screen and (max-width: 768px) and (min-height: 768px) {
+    .login-main-content {
+        background-image: url("../../assets/background2.svg");
+        background-size: cover;
+    }
+}
