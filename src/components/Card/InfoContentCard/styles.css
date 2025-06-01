@@ -1,0 +1,8 @@
+.info-content-card-standart {
+    background-color: #F9F9F9;
+    border-radius: 10px;
+    align-items: start;
+    position: relative;
+    padding: 10px;
+    gap: 10px;
+}

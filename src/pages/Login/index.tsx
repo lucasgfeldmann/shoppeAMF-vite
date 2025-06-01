@@ -6,11 +6,14 @@ import Text from "../../components/Text";
 import Input from "../../components/Input";
 import "./styles.css"
 
-
 const Login: FC = () => {
     const navigate = useNavigate();
     function goToGetStart(): void {
         navigate("/");
+    }
+
+    function goToProduct(): void {
+        navigate("/product");
     }
 
     return (
@@ -21,7 +24,7 @@ const Login: FC = () => {
             </Content.Vertical>
             <Input type="email" placeholder="Email" />
             <Content.Vertical className="login-vertical-content">
-                <Button.StandartButton>
+                <Button.StandartButton onClick={goToProduct}>
                     <Button.Text>Done</Button.Text>
                 </Button.StandartButton>
                 <Button.StandartButton onClick={goToGetStart} style={{ backgroundColor: "transparent" }}>

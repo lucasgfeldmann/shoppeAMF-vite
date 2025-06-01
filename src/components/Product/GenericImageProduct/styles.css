@@ -1,0 +1,7 @@
+.generic-image-product-standart {
+    border-radius: 10px;
+    object-fit: cover;
+    border: 5px #fff solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+    box-sizing: border-box;
+}

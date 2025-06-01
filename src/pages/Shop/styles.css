@@ -1,0 +1,25 @@
+.shop-horizontal-content {
+    height: 100%;
+    width: 100%;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 80px;
+}
+
+.search-shop {
+    color: #0042E0;
+    font-weight: 400;
+    font-size: 16px;
+    border-width: 2px;
+}
+
+.search-shop::placeholder {
+    color: #0042E0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.search-shop:focus-visible {
+    border: #0043e0a4 2px solid;
+}

@@ -47,9 +47,9 @@ const GetStart: FC = () => {
                 <Button.StandartButton onClick={goToLogin} style={{ backgroundColor: "transparent" }}>
                     <Content.Horizontal style={{ gap: 10 }}>
                         <Text.Sm>I already have an account</Text.Sm>
-                        <Button.Rounded circle={30} style={{ backgroundColor: "#004cff" }}>
+                        <Content.Rounded circle={30} style={{ backgroundColor: "#004cff" }}>
                             <Icon.Arrow width={30 * 0.6} />
-                        </Button.Rounded>
+                        </Content.Rounded>
                     </Content.Horizontal>
                 </Button.StandartButton>
             </Content.Vertical>

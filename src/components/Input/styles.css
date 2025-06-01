@@ -1,7 +1,8 @@
 .input-standart {
     background-color: #F8F8F8;
     border-radius: 60px;
-    padding: 10px;
+    padding-block: 10px;
+    padding-inline: 15px;
     border-width: 0;
     box-sizing: border-box;
     border: 4px solid #F8F8F8 ;

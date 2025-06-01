@@ -1,0 +1,8 @@
+
+.header-fixed-content {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: start;
+    gap: 10px;
+}
