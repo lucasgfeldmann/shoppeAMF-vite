@@ -22,7 +22,10 @@ const Login: FC = () => {
                 <Text.Lg className="login-texts">Login</Text.Lg>
                 <Text.Md className="login-texts">Good to see you back! 🖤</Text.Md>
             </Content.Vertical>
-            <Input type="email" placeholder="Email" />
+            <Content.Vertical className="login-vertical-content">
+                <Input type="email" placeholder="Email" />
+                <Input type="password" placeholder="Password" />
+            </Content.Vertical>
             <Content.Vertical className="login-vertical-content">
                 <Button.StandartButton onClick={goToProduct}>
                     <Button.Text>Done</Button.Text>

@@ -20,12 +20,12 @@ const GetStart: FC = () => {
     return (
         <Content.NoScroll className="get-started-main-content">
             <Content.Vertical style={{ gap: 10 }}>
-                <Button.Rounded
+                <Content.Rounded
                     circle={140}
                 >
                     <Icon.Logo width={140 * 0.6} />
 
-                </Button.Rounded>
+                </Content.Rounded>
                 <Text.Lg>
                     ShoppeAMF
                 </Text.Lg>

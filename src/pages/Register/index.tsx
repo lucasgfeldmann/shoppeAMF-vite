@@ -23,9 +23,9 @@ const Register: FC = () => {
                 Create Account
             </Text.Lg>
             <Content.Vertical className="register-vertical-content">
+                <Input type="text" placeholder="Your Name" />
                 <Input type="email" placeholder="Email" />
                 <Input type="password" placeholder="Password" />
-                <Input type="tel" placeholder="+55 55 99999 - 9999" />
             </Content.Vertical>
             <Content.Vertical className="register-vertical-content">
                 <Button.StandartButton>
