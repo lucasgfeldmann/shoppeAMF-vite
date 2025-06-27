@@ -5,9 +5,12 @@ import Button from "../../components/Button";
 import Icon from "../../components/Icon";
 import "./styles.css";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../contexts/AuthContext";
 
 const GetStart: FC = () => {
     const navigate = useNavigate();
+    const { token } = useAuth();
+    token?? navigate("/products")
 
     function goToRegister(): void {
         navigate("/register");

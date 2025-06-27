@@ -4,9 +4,9 @@ import "./styles..css"
 
 type GenericButtonProps = React.ComponentProps<typeof GenericButton>
 
-const StandartButton: FC<GenericButtonProps> = ({ ...props }) => {
+const StandartButton: FC<GenericButtonProps> = ({className, ...props }) => {
     return (
-        <GenericButton className="standart-button" {...props} />
+        <GenericButton className={`standart-button ${className}`} {...props} />
     );
 }
 

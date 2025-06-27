@@ -1,21 +1,18 @@
-import { type CSSProperties, type FC, type ReactNode } from "react";
+import { type ButtonHTMLAttributes, type FC, type HTMLAttributes, type ReactNode } from "react";
 import "./styles.css"
 
 
-interface IGenericButton {
+interface IGenericButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     children: ReactNode;
-    style?: CSSProperties;
-    className?: string
     onClick?: () => void
 }
 
 
-const GenericButton: FC<IGenericButton> = ({ children, className = "button", style, onClick }) => {
+const GenericButton: FC<IGenericButton> = ({ children, className = "button", ...props }) => {
     return (
         <button
-            onClick={onClick}
-            className={"generic-button-standarts " +  className}
-            style={{ ...style }}
+            className={`generic-button-standarts ${className}`}
+            {...props}
         >
             {children}
         </button>

@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import Content from "../../components/Content";
@@ -9,64 +9,25 @@ import Input from "../../components/Input";
 import Icon from "../../components/Icon";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router";
+import * as productService from "../../services/product"
 
-type ProductData = {
-    img: string;
-    description: string;
-    price: number;
-}
-
-const data: ProductData[] = [
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-    {
-        img: ProductSvg,
-        description: "Lorem ipsum dolor sit amet consectetur",
-        price: 17.00
-    },
-]
 
 
 const Shop: FC = () => {
     const navigate = useNavigate();
+    const [products, setProducts] = useState<productService.Product[] | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const result = await productService.getAll();
+            setProducts(result);
+        };
+        fetchProducts();
+    }, []);
+
+    if (!products) {
+        return <h1>Carregando...</h1>;
+    }
     return (
         <>
             <Layout.Header>
@@ -77,11 +38,13 @@ const Shop: FC = () => {
                 </Button.Rounded>
             </Layout.Header>
             <Content.Grid className="shop-horizontal-content">
-                {data.map((item, index) => (
-                    <Product.ContainerVertical onClick={() => navigate("/product/2")} key={index}>
-                        <Product.ImageMd src={item.img} />
-                        <Product.Description>{item.description}</Product.Description>
-                        <Product.Price>${item.price}</Product.Price>
+                {products.map((item, index) => (
+                    <Product.ContainerVertical onClick={() => navigate(`/product/${item.id}`)} key={index}>
+                        <Product.ImageMd src={ProductSvg} />
+                        <Product.Price style={{ paddingInline: 2 }}>{item.name}</Product.Price>
+                        <Product.Description style={{ paddingInline: 2 }}>{item.description}</Product.Description>
+                        <Product.Description style={{ paddingInline: 2 }}>Stock: {item.quantity}</Product.Description>
+                        <Product.Price style={{ paddingInline: 2, alignSelf: "end" }}>${(item.price * 1 / 1000).toFixed(2)}</Product.Price>
                     </Product.ContainerVertical>
                 ))}
             </Content.Grid>

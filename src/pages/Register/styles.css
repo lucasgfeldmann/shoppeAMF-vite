@@ -1,5 +1,4 @@
 .register-main-content {
-    justify-content: space-between;
     padding-inline: 5vw;
     padding-bottom: 5vh;
     padding-top: 20vh;
@@ -11,6 +10,14 @@
 
 .title-register {
     text-align: justify;
+}
+
+.register-form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) and (min-height: 650px) {
