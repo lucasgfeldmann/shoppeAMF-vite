@@ -2,7 +2,6 @@ import { useEffect, useState, type FC } from "react";
 import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import Product from "../../components/Product";
-import ProductSvg from "../../assets/products/firstProduct.svg";
 import Content from "../../components/Content";
 import "./styles.css";
 import * as orderService from "../../services/order";

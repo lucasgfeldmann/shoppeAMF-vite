@@ -6,8 +6,6 @@ import Product from "../../components/Product";
 import "./styles.css";
 import { useNavigate } from "react-router";
 import * as productService from "../../services/product"
-import Button from "../../components/Button";
-
 
 
 const Home: FC = () => {

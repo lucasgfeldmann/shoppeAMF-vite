@@ -1,4 +1,4 @@
-import type { FC, FormEventHandler } from "react";
+import type { FC } from "react";
 import Content from "../../components/Content";
 import Text from "../../components/Text";
 import Input from "../../components/Input";

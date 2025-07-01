@@ -3,7 +3,6 @@ import Content from "../../components/Content";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button";
 import Product from "../../components/Product";
-import ProductSvg from "../../assets/products/firstProduct.svg";
 import { useNavigate, useParams } from "react-router";
 import * as productService from "../../services/product"
 import Text from "../../components/Text";

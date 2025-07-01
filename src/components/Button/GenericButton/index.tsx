@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, type FC, type HTMLAttributes, type ReactNode } from "react";
+import { type ButtonHTMLAttributes, type FC, type ReactNode } from "react";
 import "./styles.css"
 
 
