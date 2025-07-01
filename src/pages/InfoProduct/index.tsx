@@ -28,7 +28,7 @@ const InfoProduct: FC = () => {
     async function buy() {
 
         await orderService.buy(parseInt(params.id as string, 10), quantity)
-        navigate("/cart")
+        navigate("/my-orders")
     }
 
     if (!product) {
@@ -37,7 +37,7 @@ const InfoProduct: FC = () => {
     return (
         <Content.Main style={{ gap: 15 }}>
             <Layout.Header>
-                <Button.StandartButton onClick={() => navigate("/product")}>
+                <Button.StandartButton onClick={() => navigate("/home")}>
                     <Button.Text>Go Back</Button.Text>
                 </Button.StandartButton>
             </Layout.Header>

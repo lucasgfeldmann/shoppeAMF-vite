@@ -1,11 +1,11 @@
 import { request } from "./api";
 
 export interface User {
-  _id: string;
+  id: number;
   name: string;
   email: string;
   password: string;
-  role: string;
+  role: boolean;
 }
 
 export async function getUsers(): Promise<User[]> {
@@ -14,7 +14,7 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function getUserById(id: string): Promise<User> {
-  const res = await request(`/${id}`, { method: "GET" });
+  const res = await request(`/users/${id}`, { method: "GET" });
   return res.json();
 }
 

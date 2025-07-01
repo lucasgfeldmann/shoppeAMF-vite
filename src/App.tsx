@@ -3,10 +3,10 @@ import { Route, Routes } from 'react-router';
 import GetStart from './pages/GetStart';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import DashBoard from './pages/DashBoard';
-import Cart from './pages/Cart';
+import AuthRoutes from './pages/AuthRoutes';
+import OrderHistory from './pages/OrderHistory';
 import Account from './pages/Account';
-import Shop from './pages/Shop';
+import Home from './pages/Home';
 import InfoProduct from './pages/InfoProduct';
 
 
@@ -17,11 +17,11 @@ const App: FC = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
 
-      <Route element={<DashBoard />}>
-        <Route path="/product" element={<Shop />} />
-        <Route path="/cart" element={<Cart />} />
+      <Route element={<AuthRoutes />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/my-orders" element={<OrderHistory />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/product/:id" element={<InfoProduct />} />
+        <Route path="/:id" element={<InfoProduct />} />
       </Route>
 
     </Routes>

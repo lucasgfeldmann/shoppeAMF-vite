@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useEffect, type FC } from "react";
 import Content from "../../components/Content";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
@@ -9,8 +9,13 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const GetStart: FC = () => {
     const navigate = useNavigate();
-    const { token } = useAuth();
-    token?? navigate("/products")
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (user?.token) {
+            navigate("/home", { replace: true });
+        }
+    }, [user?.token, navigate]);
 
     function goToRegister(): void {
         navigate("/register");
@@ -23,16 +28,12 @@ const GetStart: FC = () => {
     return (
         <Content.NoScroll className="get-started-main-content">
             <Content.Vertical style={{ gap: 10 }}>
-                <Content.Rounded
-                    circle={140}
-                >
+                <Content.Rounded circle={140}>
                     <Icon.Logo width={140 * 0.6} />
-
                 </Content.Rounded>
-                <Text.Lg>
-                    ShoppeAMF
-                </Text.Lg>
+                <Text.Lg>ShoppeAMF</Text.Lg>
             </Content.Vertical>
+
             <Content.Vertical>
                 <Text.Md style={{ textAlign: "center" }}>
                     Beautiful eCommerce UI Kit
@@ -41,12 +42,12 @@ const GetStart: FC = () => {
                     for your online store.
                 </Text.Md>
             </Content.Vertical>
+
             <Content.Vertical style={{ gap: 10 }}>
                 <Button.StandartButton onClick={goToRegister}>
-                    <Button.Text>
-                        Let's get started
-                    </Button.Text>
+                    <Button.Text>Let's get started</Button.Text>
                 </Button.StandartButton>
+
                 <Button.StandartButton onClick={goToLogin} style={{ backgroundColor: "transparent" }}>
                     <Content.Horizontal style={{ gap: 10 }}>
                         <Text.Sm>I already have an account</Text.Sm>
@@ -58,6 +59,6 @@ const GetStart: FC = () => {
             </Content.Vertical>
         </Content.NoScroll>
     );
-}
+};
 
 export default GetStart;

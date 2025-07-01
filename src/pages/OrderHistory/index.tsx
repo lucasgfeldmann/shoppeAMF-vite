@@ -7,9 +7,10 @@ import Content from "../../components/Content";
 import "./styles.css";
 import * as orderService from "../../services/order";
 
-const Cart: FC = () => {
+const OrderHisoty: FC = () => {
 
-    const [products, setProducts] = useState<orderService.Order[] | null>(null);
+    const [products, setProducts] = useState<orderService.Order[]>([]);
+    const [loading, setLoading] = useState<Boolean>(true);
 
 
     function formatedDate(date: Date) {
@@ -22,11 +23,12 @@ const Cart: FC = () => {
         const fetchProducts = async () => {
             const result = await orderService.getHistory();
             setProducts(result);
+            setLoading(false);
         };
         fetchProducts();
     }, []);
 
-    if (!products) {
+    if (loading) {
         return <h1>Carregando...</h1>;
     }
     return (
@@ -35,6 +37,7 @@ const Cart: FC = () => {
                 <Text.Header>History Orders</Text.Header>
             </Layout.Header>
             <Content.Vertical style={{ gap: 15 }}>
+                {!products[0] && <Text.Lg style={{ fontSize: 22 }}>Nenhum historico encontrado</Text.Lg>}
                 {
                     products.map(item => (
                         <Product.ConteinerHorizontal style={{ gap: 10, backgroundColor: "#f2f2f2", padding: 10, borderRadius: 10 }}>
@@ -54,4 +57,4 @@ const Cart: FC = () => {
     );
 }
 
-export default Cart;
+export default OrderHisoty;

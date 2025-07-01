@@ -1,13 +1,32 @@
 import { request } from "./api";
+import { getUserById } from "./user";
 
-export async function login(email: string, password: string) {
+
+export interface AuthUser {
+  id: number;
+  name: string;
+  email: string;
+  admin: boolean;
+  token: string
+}
+
+export async function login(email: string, password: string): Promise<AuthUser> {
+
   const res = await request("/users/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),
   });
-  const { token } = await res.json();
-  console.log("Token => " + token)
-  return token;
+  const dataLogin = await res.json();
+  localStorage.setItem("id", dataLogin.id.toString());
+  localStorage.setItem("token", dataLogin.token);
+
+
+  const dataUser = await getUserById(dataLogin.id)
+  const data: AuthUser = {
+    ...dataUser, ...dataLogin
+  }
+
+  return data;
 }
 
 

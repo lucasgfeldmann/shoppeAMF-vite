@@ -5,39 +5,35 @@ import Content from "../../components/Content";
 import Product from "../../components/Product";
 import ProductSvg from "../../assets/products/firstProduct.svg";
 import "./styles.css";
-import Input from "../../components/Input";
-import Icon from "../../components/Icon";
-import Button from "../../components/Button";
 import { useNavigate } from "react-router";
 import * as productService from "../../services/product"
 
 
 
-const Shop: FC = () => {
+const Home: FC = () => {
     const navigate = useNavigate();
-    const [products, setProducts] = useState<productService.Product[] | null>(null);
+    const [loading, setLoading] = useState<Boolean>(true);
+    const [products, setProducts] = useState<productService.Product[]>([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             const result = await productService.getAll();
             setProducts(result);
+            setLoading(false)
         };
         fetchProducts();
     }, []);
 
-    if (!products) {
+    if (loading) {
         return <h1>Carregando...</h1>;
     }
     return (
         <>
-            <Layout.Header>
-                <Text.Header>Shop</Text.Header>
-                <Input type="text" placeholder="Socks ✖️" className="search-shop" />
-                <Button.Rounded onClick={() => navigate("/")} style={{ backgroundColor: "transparent", boxShadow: "none" }}>
-                    <Icon.Settings width={35} />
-                </Button.Rounded>
+            <Layout.Header style={{ justifyContent: "space-between" }}>
+                <Text.Header>Home</Text.Header>
             </Layout.Header>
             <Content.Grid className="shop-horizontal-content">
+                {!products[0] && <Text.Lg style={{ fontSize: 22 }}>Nenhum produto encontrado</Text.Lg>}
                 {products.map((item, index) => (
                     <Product.ContainerVertical onClick={() => navigate(`/product/${item.id}`)} key={index}>
                         <Product.ImageMd src={ProductSvg} />
@@ -52,5 +48,5 @@ const Shop: FC = () => {
     );
 }
 
-export default Shop;
+export default Home;
 

@@ -23,7 +23,7 @@ const Login: FC = () => {
         const password = formData.get("password")
 
         await authContext.login(email as string, password as string)
-        navigate("/product")
+        navigate("/home")
     }
 
     return (

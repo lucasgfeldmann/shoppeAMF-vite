@@ -10,8 +10,8 @@ const BottomTabs: FC = () => {
 
     return (
         <Content.Fixed className="layout-bottom-tabs">
-            <Icon.Home width={30} onClick={() => navigate("/product")} />
-            <Icon.Cart width={30} onClick={() => navigate("/cart")} />
+            <Icon.Home width={30} onClick={() => navigate("/home")} />
+            <Icon.Cart width={30} onClick={() => navigate("/my-orders")} />
             <Icon.Account width={30} onClick={() => navigate("/account")} />
         </Content.Fixed>
     );

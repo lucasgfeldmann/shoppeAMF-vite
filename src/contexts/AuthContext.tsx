@@ -6,33 +6,70 @@ import {
   useEffect,
   type FC,
 } from "react";
-import { login as loginService, register as registerService } from "../services/auth";
+import {
+  login as loginService,
+  register as registerService,
+  type AuthUser,
+} from "../services/auth";
+
+
+const userLocalStorage = {
+  check: (): boolean => {
+    return (
+      !!localStorage.getItem("id") &&
+      !!localStorage.getItem("name") &&
+      !!localStorage.getItem("email") &&
+      !!localStorage.getItem("admin") &&
+      !!localStorage.getItem("token")
+    );
+  },
+  get: (): AuthUser => {
+    const id = parseInt(localStorage.getItem("id") ?? "0", 10);
+    const name = localStorage.getItem("name") ?? "";
+    const email = localStorage.getItem("email") ?? "";
+    const admin = localStorage.getItem("admin") === "true";
+    const token = localStorage.getItem("token") ?? "";
+    return { id, name, email, admin, token };
+  },
+  set: (data: AuthUser): void => {
+    localStorage.setItem("id", data.id.toString());
+    localStorage.setItem("name", data.name);
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("admin", data.admin.toString());
+    localStorage.setItem("token", data.token);
+  },
+  clear: (): void => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("name");
+    localStorage.removeItem("email");
+    localStorage.removeItem("admin");
+    localStorage.removeItem("token");
+  },
+};
 
 interface AuthContextType {
-  token: string | null;
+  user: AuthUser | null;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
-// 1) Cria o contexto sem precisar forçar com “as”
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 2) Define o provider como um React.FC (retorna JSX.Element por padrão)
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setAuthUser] = useState<AuthUser | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("token");
-    console.log("LOCAL STORAGE")
-    console.log(saved)
-    if (saved) setToken(saved);
-  }, [token]);
+    if (userLocalStorage.check()) {
+      const storedUser = userLocalStorage.get();
+      setAuthUser(storedUser);
+    }
+  }, []);
 
   async function login(email: string, password: string) {
-    const t = await loginService(email, password);
-    setToken(t);
-    localStorage.setItem("token", t);
+    const authUser = await loginService(email, password);
+    userLocalStorage.set(authUser);
+    setAuthUser(authUser);
   }
 
   async function register(name: string, email: string, password: string) {
@@ -40,21 +77,17 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   function logout() {
-    setToken(null);
-    localStorage.removeItem("token");
+    userLocalStorage.clear();
+    setAuthUser(null);
   }
 
-  console.log("TOKEN")
-  console.log(token)
-
   return (
-    <AuthContext.Provider value={{ token, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// 3) Hook que garante que você use o contexto dentro de um AuthProvider
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (!context) {
