@@ -4,22 +4,22 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  admin: boolean;
   password: string;
-  role: boolean;
 }
 
 export async function getUsers(): Promise<User[]> {
-  const res = await request("/", { method: "GET" });
+  const res = await request("/users", { method: "GET" });
   return res.json();
 }
 
-export async function getUserById(id: string): Promise<User> {
+export async function getUserById(id: number): Promise<User> {
   const res = await request(`/users/${id}`, { method: "GET" });
   return res.json();
 }
 
-export async function createUser(data: Omit<User, "_id">): Promise<User> {
-  const res = await request("/", {
+export async function createUser(data: Omit<User, "id">): Promise<User> {
+  const res = await request("/users", {
     method: "POST",
     body: JSON.stringify(data),
   });
@@ -27,16 +27,16 @@ export async function createUser(data: Omit<User, "_id">): Promise<User> {
 }
 
 export async function updateUser(
-  id: string,
-  data: Partial<Omit<User, "_id">>
+  id: number,
+  data: Partial<User>
 ): Promise<User> {
-  const res = await request(`/${id}`, {
+  const res = await request(`/users/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
   return res.json();
 }
 
-export async function deleteUser(id: string): Promise<void> {
-  await request(`/${id}`, { method: "DELETE" });
+export async function deleteUser(id: number): Promise<void> {
+  await request(`/users/${id}`, { method: "DELETE" });
 }

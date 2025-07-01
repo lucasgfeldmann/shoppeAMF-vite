@@ -16,7 +16,9 @@ const OrderHisoty: FC = () => {
     function formatedDate(date: Date) {
         const doneAt = new Date(date); // garante que seja Date
         const formattedDate = doneAt.toLocaleDateString("pt-BR");
-        return formattedDate
+        const hour = doneAt.getHours()
+        const minutes = doneAt.getMinutes()
+        return `${formattedDate} ${hour}:${minutes}`
     }
 
     useEffect(() => {
@@ -41,10 +43,10 @@ const OrderHisoty: FC = () => {
                 {
                     products.map(item => (
                         <Product.ConteinerHorizontal style={{ gap: 10, backgroundColor: "#f2f2f2", padding: 10, borderRadius: 10 }}>
-                            <Product.ImageSm src={ProductSvg} />
                             <Product.ContainerVertical style={{ height: "auto", alignSelf: "stretch", justifyContent: "space-between" }}>
                                 <Product.Especification>{formatedDate(item.done_at)}</Product.Especification>
-                                <Product.Especification>ID Produto{item.product_id}</Product.Especification>
+                                <Product.Especification>Product ID: {item.product_id}</Product.Especification>
+                                <Product.Especification>Product Name: {item.product_name}</Product.Especification>
                                 <Product.Especification>Quantidade: {item.quantity}</Product.Especification>
                                 <Product.Especification>Total: ${(item.total_price * 1 / 1000).toFixed(2)}</Product.Especification>
                             </Product.ContainerVertical>

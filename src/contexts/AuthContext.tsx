@@ -52,18 +52,21 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
+  isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setAuthUser] = useState<AuthUser | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // novo estado
 
   useEffect(() => {
     if (userLocalStorage.check()) {
       const storedUser = userLocalStorage.get();
       setAuthUser(storedUser);
     }
+    setIsLoading(false);
   }, []);
 
   async function login(email: string, password: string) {
@@ -82,7 +85,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

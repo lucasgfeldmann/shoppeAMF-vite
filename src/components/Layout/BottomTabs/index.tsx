@@ -1,18 +1,13 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import Content from "../../Content";
-import Icon from "../../Icon";
-import { useNavigate } from "react-router";
 import "./styles.css"
 
 
-const BottomTabs: FC = () => {
-    const navigate = useNavigate();
+const BottomTabs: FC<{ children: ReactNode }> = ({ children }) => {
 
     return (
         <Content.Fixed className="layout-bottom-tabs">
-            <Icon.Home width={30} onClick={() => navigate("/home")} />
-            <Icon.Cart width={30} onClick={() => navigate("/my-orders")} />
-            <Icon.Account width={30} onClick={() => navigate("/account")} />
+            {children}
         </Content.Fixed>
     );
 }

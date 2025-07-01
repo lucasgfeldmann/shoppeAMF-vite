@@ -41,7 +41,6 @@ const InfoProduct: FC = () => {
                     <Button.Text>Go Back</Button.Text>
                 </Button.StandartButton>
             </Layout.Header>
-            <Product.GenericImage src={ProductSvg} style={{ width: "100%", height: "50vh" }} />
             <Content.Horizontal style={{ width: "100%", justifyContent: "space-between" }}>
                 <Content.Vertical style={{ alignItems: "start", paddingInline: 3, width: "auto" }}>
                     <Product.Price>{product.name}</Product.Price>

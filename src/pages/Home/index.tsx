@@ -3,10 +3,10 @@ import Layout from "../../components/Layout";
 import Text from "../../components/Text";
 import Content from "../../components/Content";
 import Product from "../../components/Product";
-import ProductSvg from "../../assets/products/firstProduct.svg";
 import "./styles.css";
 import { useNavigate } from "react-router";
 import * as productService from "../../services/product"
+import Button from "../../components/Button";
 
 
 
@@ -35,8 +35,7 @@ const Home: FC = () => {
             <Content.Grid className="shop-horizontal-content">
                 {!products[0] && <Text.Lg style={{ fontSize: 22 }}>Nenhum produto encontrado</Text.Lg>}
                 {products.map((item, index) => (
-                    <Product.ContainerVertical onClick={() => navigate(`/product/${item.id}`)} key={index}>
-                        <Product.ImageMd src={ProductSvg} />
+                    <Product.ContainerVertical style={{ backgroundColor: "#ccc", borderRadius: 16, padding: 8, boxSizing: "border-box" }} onClick={() => navigate(`/${item.id}`)} key={index}>
                         <Product.Price style={{ paddingInline: 2 }}>{item.name}</Product.Price>
                         <Product.Description style={{ paddingInline: 2 }}>{item.description}</Product.Description>
                         <Product.Description style={{ paddingInline: 2 }}>Stock: {item.quantity}</Product.Description>

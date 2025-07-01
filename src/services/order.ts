@@ -7,10 +7,11 @@ export interface Order {
   product_id: string;
   quantity: number;
   total_price: number;
+  product_name?: string
 }
 
 export async function getAll(): Promise<Order[]> {
-  const res = await request("/products", { method: "GET" });
+  const res = await request("/orders", { method: "GET" });
   return res.json();
 }
 
@@ -20,7 +21,7 @@ export async function getHistory(): Promise<Order[]> {
 }
 
 export async function getById(id: number): Promise<Order> {
-  const res = await request(`/products/${id}`, { method: "GET" });
+  const res = await request(`/orders/${id}`, { method: "GET" });
   return res.json();
 }
 
@@ -29,8 +30,8 @@ export async function buy(product_id: number, quantity: number): Promise<Order> 
   return res.json();
 }
 
-export async function create(data: Omit<Order, "_id">): Promise<Order> {
-  const res = await request("/products", {
+export async function create(data: Omit<Order, "id">): Promise<Order> {
+  const res = await request("/orders", {
     method: "POST",
     body: JSON.stringify(data),
   });
@@ -38,16 +39,16 @@ export async function create(data: Omit<Order, "_id">): Promise<Order> {
 }
 
 export async function updateOrder(
-  id: string,
-  data: Partial<Omit<Order, "_id">>
+  id: number,
+  data: Partial<Order>
 ): Promise<Order> {
-  const res = await request(`/${id}`, {
+  const res = await request(`/orders/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
   return res.json();
 }
 
-export async function deleteOrder(id: string): Promise<void> {
-  await request(`/products/${id}`, { method: "DELETE" });
+export async function deleteOrder(id: number): Promise<void> {
+  await request(`/orders/${id}`, { method: "DELETE" });
 }

@@ -18,7 +18,7 @@ export async function getById(id: number): Promise<Product> {
   return res.json();
 }
 
-export async function create(data: Omit<Product, "_id">): Promise<Product> {
+export async function create(data: Omit<Product, "id">): Promise<Product> {
   const res = await request("/products", {
     method: "POST",
     body: JSON.stringify(data),
@@ -27,16 +27,16 @@ export async function create(data: Omit<Product, "_id">): Promise<Product> {
 }
 
 export async function updateProduct(
-  id: string,
-  data: Partial<Omit<Product, "_id">>
+  id: number,
+  data: Partial<Product>
 ): Promise<Product> {
-  const res = await request(`/${id}`, {
+  const res = await request(`/products/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
   });
   return res.json();
 }
 
-export async function deleteProduct(id: string): Promise<void> {
+export async function deleteProduct(id: number): Promise<void> {
   await request(`/products/${id}`, { method: "DELETE" });
 }

@@ -4,10 +4,12 @@ import Text from "../../components/Text";
 import Button from "../../components/Button";
 import Content from "../../components/Content";
 import { useAuth } from "../../contexts/AuthContext";
+import {  useNavigate } from "react-router";
 
 
 const Account: FC = () => {
     const { user } = useAuth()
+    const navigate = useNavigate()
 
     const { logout } = useAuth()
     return (
@@ -22,7 +24,7 @@ const Account: FC = () => {
                     <Button.Text>Logout</Button.Text>
                 </Button.StandartButton>
                 {user?.admin &&
-                    <Button.StandartButton onClick={logout}>
+                    <Button.StandartButton onClick={() => navigate("/products")}>
                         <Button.Text>admin</Button.Text>
                     </Button.StandartButton>
                 }
